@@ -1,6 +1,7 @@
 name: Trivy Scan Image
 on:
   workflow_call:
+
 jobs:
   build:
     name: CVE Image Scan
