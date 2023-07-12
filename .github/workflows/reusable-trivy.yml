@@ -1,0 +1,15 @@
+name: Trivy Scan Image
+on:
+  workflow_call:
+jobs:
+  build:
+    name: CVE Image Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@0.11.2
+        with:
+          image-ref: ghcr.io/${{ github.repository }}:latest
+        env:
+          TRIVY_USERNAME: ${{ github.actor }}
+          TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
