@@ -2,12 +2,8 @@ name: Trivy Scan Image
 on:
   workflow_call:
     inputs:
-      image-name:
-        description: Image name to scan
-        required: true
-        type: string
-      image-tag:
-        description: Image tag to scan
+      image:
+        description: Image to scan
         required: true
         type: string
 
@@ -19,7 +15,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.9.1
         with:
-          image-ref: ${{ inputs.image-name }}:${{ inputs.image-tag }}
+          image-ref: ${{ inputs.image }}
         env:
           TRIVY_USERNAME: ${{ github.actor }}
           TRIVY_PASSWORD: ${{ secrets.GITHUB_TOKEN }}
